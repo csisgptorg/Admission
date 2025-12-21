@@ -1,0 +1,6 @@
+@Csis.Admission.NugetTest_HostAddress = http://localhost:5088
+
+GET {{Csis.Admission.NugetTest_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

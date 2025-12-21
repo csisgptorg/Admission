@@ -1,0 +1,9 @@
+{
+  "version": "3.13.6",
+  "excludedFiles": [
+    "Common\\Gender.cs",
+    "Common\\MarriatalStatus.cs",
+    "Common\\Nationality.cs",
+    "Application\\GlobalUsings.cs"
+  ]
+}

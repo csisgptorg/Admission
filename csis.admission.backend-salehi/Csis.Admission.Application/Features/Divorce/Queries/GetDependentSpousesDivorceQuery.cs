@@ -1,0 +1,29 @@
+﻿using Csis.Admission.Application.Common.Interfaces.Repositories.Student;
+using Csis.Admission.Application.Features.Marriages.Dtos;
+
+namespace Csis.Admission.Application.Features.Divorce.Queries;
+
+/// <summary>
+/// نمایش لیست همسران هر مرد
+/// </summary>
+/// <param name="Codm"></param>
+public sealed record GetDependentSpousesDivorceQuery(int Codm) : IRequest<List<DependentSpousesDto>>;
+
+internal sealed class GetMaleSpousesDivorceQueryHandler(
+    IStudentRepository studentRepository,
+    IRepository<DependentSummary, long> studentDependentRepo)
+    : IRequestHandler<GetDependentSpousesDivorceQuery, List<DependentSpousesDto>>
+{
+    public async Task<List<DependentSpousesDto>> Handle(GetDependentSpousesDivorceQuery request, CancellationToken cancellationToken) {
+        var student = await studentRepository.GetStudentInfoByCodm(request.Codm)
+                      ?? throw new CommandValidationException("کد مرکز صحیح نیست");
+
+        var dependentList = await studentDependentRepo.GetAllAsync(x => x.Codm == request.Codm && x.Relation == DependentRelation.Spouse && !x.DivorceDate.HasValue, cancellationToken: cancellationToken);
+
+        return dependentList
+            .OrderBy(x => x.Relation)
+            .ThenBy(x => x.RelationOrder)
+            .Select(DependentSpousesDto.FromEntity)
+            .ToList();
+    }
+}

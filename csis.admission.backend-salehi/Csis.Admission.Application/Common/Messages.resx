@@ -1,0 +1,426 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AdoptedChild" xml:space="preserve">
+    <value>فرزند خوانده</value>
+  </data>
+  <data name="AlMustafaInternationalUniversity" xml:space="preserve">
+    <value>جامعه المصطفی العالمیه</value>
+  </data>
+  <data name="Arabic" xml:space="preserve">
+    <value>عربی</value>
+  </data>
+  <data name="ArmedForces" xml:space="preserve">
+    <value>بيمه نيروهاي مسلح</value>
+  </data>
+  <data name="ArticleTranslation" xml:space="preserve">
+    <value>ترجمه مقاله</value>
+  </data>
+  <data name="ArticleTranslationDuplicate" xml:space="preserve">
+    <value>ترجمه مقاله</value>
+  </data>
+  <data name="ArticleWriting" xml:space="preserve">
+    <value>تالیف مقاله</value>
+  </data>
+  <data name="BachelorDegree" xml:space="preserve">
+    <value>کارشناسی</value>
+  </data>
+  <data name="BankInsurance" xml:space="preserve">
+    <value>بيمه بانک</value>
+  </data>
+  <data name="BookWriting" xml:space="preserve">
+    <value>تالیف کتاب</value>
+  </data>
+  <data name="CenterForManagementOfIslamicSeminariesOfBrothersNationwide" xml:space="preserve">
+    <value>مرکز مدیریت برادران</value>
+  </data>
+  <data name="CenterForManagementOfIslamicSeminariesOfSistersNationwide" xml:space="preserve">
+    <value>مرکز مدیریت خواهران</value>
+  </data>
+  <data name="Child" xml:space="preserve">
+    <value>فرزند</value>
+  </data>
+  <data name="Commission" xml:space="preserve">
+    <value>کمیسیون</value>
+  </data>
+  <data name="CulturalInstitutions" xml:space="preserve">
+    <value>مدیریت موسسات فرهنگی</value>
+  </data>
+  <data name="DabirkhaneShoraMadresAhlSonnat" xml:space="preserve">
+    <value>دبیرخانه شورای برنامه‌ریزی مدارس علوم دینی اهل سنت (طلاب اهل سنت)</value>
+  </data>
+  <data name="DafaterMaraje" xml:space="preserve">
+    <value>دفاتر مراجع تقلید</value>
+  </data>
+  <data name="DaftarTablighatEslamiHowze" xml:space="preserve">
+    <value>دفتر تبلیغات اسلامی حوزه علمیه</value>
+  </data>
+  <data name="DaughterInLaw" xml:space="preserve">
+    <value>عروس</value>
+  </data>
+  <data name="Divorced" xml:space="preserve">
+    <value>طلاق همسر</value>
+  </data>
+  <data name="DoctoralDegree" xml:space="preserve">
+    <value>دکتری</value>
+  </data>
+  <data name="Dormitory" xml:space="preserve">
+    <value>حجره یا خوابگاه</value>
+  </data>
+  <data name="Endowment" xml:space="preserve">
+    <value>اوقافی</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>انگلیسی</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>زن</value>
+  </data>
+  <data name="GraduateDiploma" xml:space="preserve">
+    <value>فوق دیپلم</value>
+  </data>
+  <data name="Grandchild" xml:space="preserve">
+    <value>نوه</value>
+  </data>
+  <data name="HadithMemorizers" xml:space="preserve">
+    <value>حافظین حدیث</value>
+  </data>
+  <data name="HealthServices" xml:space="preserve">
+    <value>بيمه خدمات درماني</value>
+  </data>
+  <data name="HomePurchase" xml:space="preserve">
+    <value>خرید مسکن</value>
+  </data>
+  <data name="ImamJamaat" xml:space="preserve">
+    <value>امام جماعت</value>
+  </data>
+  <data name="ImamJamaatMadarese" xml:space="preserve">
+    <value>امام جماعت مدارس</value>
+  </data>
+  <data name="ImamJomeh" xml:space="preserve">
+    <value>امام جمعه</value>
+  </data>
+  <data name="Introduction" xml:space="preserve">
+    <value>مقدمات</value>
+  </data>
+  <data name="Iranian" xml:space="preserve">
+    <value>ایرانی</value>
+  </data>
+  <data name="JameatAlMostafa" xml:space="preserve">
+    <value>جامعه المصطفی العالمیه (طلاب غیرایرانی)</value>
+  </data>
+  <data name="JameatAlQuran" xml:space="preserve">
+    <value>جامعه القرآن الکریم</value>
+  </data>
+  <data name="JameatAlZahra" xml:space="preserve">
+    <value>جامعه الزهرا س</value>
+  </data>
+  <data name="KhatabaKhuzestan" xml:space="preserve">
+    <value>خطبا خوزستان</value>
+  </data>
+  <data name="LevelFour" xml:space="preserve">
+    <value>سطح چهار</value>
+  </data>
+  <data name="LevelOne" xml:space="preserve">
+    <value>سطح یک</value>
+  </data>
+  <data name="LevelThree" xml:space="preserve">
+    <value>سطح سه</value>
+  </data>
+  <data name="LevelTwo" xml:space="preserve">
+    <value>سطح دو</value>
+  </data>
+  <data name="MadreseAmin" xml:space="preserve">
+    <value>مدارس امین</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>مرد</value>
+  </data>
+  <data name="ManagementCenterOfIslamicSeminariesOfIsfahan" xml:space="preserve">
+    <value>مرکز مدیریت اصفهان</value>
+  </data>
+  <data name="ManagementCenterOfIslamicSeminariesOfKhorasan" xml:space="preserve">
+    <value>مرکز مدیریت خراسان</value>
+  </data>
+  <data name="MarkazModiriyatHowzeBaradaran" xml:space="preserve">
+    <value>مرکز مدیریت حوزه‌های علمیه برادران سراسر کشور</value>
+  </data>
+  <data name="MarkazModiriyatHowzeEsfahan" xml:space="preserve">
+    <value>مرکز مدیریت حوزه‌های علمیه اصفهان (طلاب خواهران و برادران)</value>
+  </data>
+  <data name="MarkazModiriyatHowzeKhaharan" xml:space="preserve">
+    <value>مرکز مدیریت حوزه‌های علمیه خواهران سراسر کشور</value>
+  </data>
+  <data name="MarkazModiriyatHowzeKhorasan" xml:space="preserve">
+    <value>مرکز مدیریت حوزه‌های علمیه خراسان (طلاب خواهر و برادر)</value>
+  </data>
+  <data name="MarkazOmourMasajed" xml:space="preserve">
+    <value>مرکز امور مساجد</value>
+  </data>
+  <data name="MartyrsFoundation" xml:space="preserve">
+    <value>بيمه بنياد شهيد و امور ايثارگران</value>
+  </data>
+  <data name="MasterDegree" xml:space="preserve">
+    <value>کارشناسی ارشد</value>
+  </data>
+  <data name="Mobalegh" xml:space="preserve">
+    <value>مبلغ</value>
+  </data>
+  <data name="MollaMahaliSistanBaluchestan" xml:space="preserve">
+    <value>ملا محلی سیستان و بلوچستان</value>
+  </data>
+  <data name="Mortgage" xml:space="preserve">
+    <value>رهنی</value>
+  </data>
+  <data name="MostamarSaati" xml:space="preserve">
+    <value>مستمر ساعتی</value>
+  </data>
+  <data name="NahadNamayandegiRahbariDaneshgah" xml:space="preserve">
+    <value>نهاد نمایندگی مقام معظم رهبری در امور دانشگاه‌ها</value>
+  </data>
+  <data name="NahadNamayandegiRahbariNirooha" xml:space="preserve">
+    <value>نهاد نمایندگی مقام معظم رهبری در نیروهای نظامی و انتظامی</value>
+  </data>
+  <data name="NahjAlBalaghaMemorizers" xml:space="preserve">
+    <value>حافظین نهج البلاغه</value>
+  </data>
+  <data name="Nephew" xml:space="preserve">
+    <value>برادر زاده</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>هيچکدام</value>
+  </data>
+  <data name="NonIranian" xml:space="preserve">
+    <value>غیر ایرانی</value>
+  </data>
+  <data name="NovinMajazi" xml:space="preserve">
+    <value>نوین (مجازی)</value>
+  </data>
+  <data name="Null" xml:space="preserve">
+    <value>نال</value>
+  </data>
+  <data name="Organizational" xml:space="preserve">
+    <value>سازمانی</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>سایر</value>
+  </data>
+  <data name="Parent" xml:space="preserve">
+    <value>پدر و مادر</value>
+  </data>
+  <data name="Paternal" xml:space="preserve">
+    <value>پدری</value>
+  </data>
+  <data name="Persian" xml:space="preserve">
+    <value>فارسی</value>
+  </data>
+  <data name="Private" xml:space="preserve">
+    <value>شخصی</value>
+  </data>
+  <data name="QuranMemorizers" xml:space="preserve">
+    <value>حافظین قرآن</value>
+  </data>
+  <data name="ReliefCommittee" xml:space="preserve">
+    <value>بيمه کميته امداد</value>
+  </data>
+  <data name="ReligiousCommittees" xml:space="preserve">
+    <value>مدیریت هیأت مذهبی</value>
+  </data>
+  <data name="ReligiousInstitutions" xml:space="preserve">
+    <value>مدیریت موسسات دینی</value>
+  </data>
+  <data name="RentalOrMortgage" xml:space="preserve">
+    <value>اجاره ای یا رهنی</value>
+  </data>
+  <data name="Research" xml:space="preserve">
+    <value>تحقیق</value>
+  </data>
+  <data name="ResearchProject" xml:space="preserve">
+    <value>پروژه پژوهشی</value>
+  </data>
+  <data name="RohaniMostaghar" xml:space="preserve">
+    <value>روحانی مستقر</value>
+  </data>
+  <data name="RuralInsurance" xml:space="preserve">
+    <value>بيمه روستايي</value>
+  </data>
+  <data name="SafiranHedayat" xml:space="preserve">
+    <value>سفیران هدایت</value>
+  </data>
+  <data name="SayerNahadhaBaTaeidKomision" xml:space="preserve">
+    <value>سایر سازمان‌ها و نهادهای رسمی کشور با تأیید کمیسیون</value>
+  </data>
+  <data name="SazmanHajVaZiarat" xml:space="preserve">
+    <value>سازمان حج و زیارت</value>
+  </data>
+  <data name="SazmanOghafVaOmourKheirieh" xml:space="preserve">
+    <value>سازمان اوقاف و امور خیریه</value>
+  </data>
+  <data name="SazmanTablighatEslami" xml:space="preserve">
+    <value>سازمان تبلیغات اسلامی</value>
+  </data>
+  <data name="SecretariatOfSunniPlanningCouncil" xml:space="preserve">
+    <value>دبیرخانه شورای برنامه ریزی اهل سنت</value>
+  </data>
+  <data name="SelfEmployed" xml:space="preserve">
+    <value>خويش فرما</value>
+  </data>
+  <data name="SetadAghameNamaz" xml:space="preserve">
+    <value>ستاد اقامه نماز</value>
+  </data>
+  <data name="SharedOwnership" xml:space="preserve">
+    <value>شریکی</value>
+  </data>
+  <data name="Shia" xml:space="preserve">
+    <value>شیعه</value>
+  </data>
+  <data name="ShorayeSiasatgozariEmameJome" xml:space="preserve">
+    <value>شورای سیاست‌گذاری ائمه جمعه و نمایندگان ولی فقیه</value>
+  </data>
+  <data name="Siblings" xml:space="preserve">
+    <value>خواهر برادر</value>
+  </data>
+  <data name="Single" xml:space="preserve">
+    <value>مجرد</value>
+  </data>
+  <data name="SocialSecurity" xml:space="preserve">
+    <value>بيمه تامين اجتماعي</value>
+  </data>
+  <data name="Spouse" xml:space="preserve">
+    <value>همسر</value>
+  </data>
+  <data name="Sunni" xml:space="preserve">
+    <value>سنی</value>
+  </data>
+  <data name="Supportive" xml:space="preserve">
+    <value>حمایتی</value>
+  </data>
+  <data name="TarhHejratBolandModat" xml:space="preserve">
+    <value>طرح هجرت بلند مدت</value>
+  </data>
+  <data name="VezaratFarhangErshad" xml:space="preserve">
+    <value>وزارت فرهنگ و ارشاد اسلامی</value>
+  </data>
+  <data name="WelfareInsurance" xml:space="preserve">
+    <value>بيمه بهزيستي</value>
+  </data>
+  <data name="Widowed" xml:space="preserve">
+    <value>فوت همسر</value>
+  </data>
+</root>

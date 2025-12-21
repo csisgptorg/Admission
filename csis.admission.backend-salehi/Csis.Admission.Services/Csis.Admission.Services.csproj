@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)' != 'Debug' ">
+		<DebugType>None</DebugType>
+		<DebugSymbols>False</DebugSymbols>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AspNetCore.HealthChecks.Elasticsearch" Version="9.0.0" />
+		<PackageReference Include="AspNetCore.HealthChecks.Redis" Version="9.0.0" />
+		<PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="9.0.0" />
+		<PackageReference Include="Csis.Notification" Version="1.1.53" />
+		<PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="9.0.10" />
+		<PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="9.0.10" />
+		<PackageReference Include="StackExchange.Redis" Version="2.9.32" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Csis.Admission.Persistence\Csis.Admission.Persistence.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="BackgroundServices\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Csis.Excel.Mapper" Version="1.0.1" />
+	</ItemGroup>
+
+</Project>

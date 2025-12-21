@@ -1,0 +1,84 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+	</PropertyGroup>
+ 
+	<PropertyGroup Condition=" '$(Configuration)' != 'Debug' ">
+		<DebugType>None</DebugType>
+		<DebugSymbols>False</DebugSymbols>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>true</ImplicitUsings>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<SatelliteResourceLanguages>en;fa</SatelliteResourceLanguages>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Content Remove="Properties\PublishProfiles\launchSettings.json" />
+		<Content Remove="spec.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<InternalsVisibleTo Include="Csis.Admission.IntegrationTests" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="Properties\PublishProfiles\FolderProfile.pubxml.user" />
+		<None Include="spec.json" />
+	</ItemGroup>
+
+	<ItemGroup>		
+		<PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="9.0.0" />		
+		<PackageReference Include="Csis.Abstractions" Version="1.4.15" />
+		<PackageReference Include="FluentAssertions" Version="8.6.0" />		
+		<PackageReference Include="Csis.DigestAuthentication.Stores.InMemory" Version="1.1.0" />		
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.10">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.10">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>		
+
+		<PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
+
+		<PackageReference Include="Serilog.Exceptions" Version="8.4.0" />
+		<PackageReference Include="Elastic.Serilog.Sinks" Version="9.0.0" />
+		<PackageReference Include="Serilog" Version="4.3.0" />
+		<PackageReference Include="Serilog.Extensions.Hosting" Version="9.0.0" />
+		<PackageReference Include="Serilog.Extensions.Logging" Version="9.0.2" />
+		<PackageReference Include="Serilog.Settings.Configuration" Version="9.0.0" />
+		<PackageReference Include="Serilog.Sinks.Async" Version="2.1.0" />
+		<PackageReference Include="Serilog.Sinks.Console" Version="6.1.1" />
+
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.6" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Update="appsettings.Developer.json">
+			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
+		</Content>
+		<Content Update="appsettings.Developer.json" CopyToPublishDirectory="Never" />
+		<Content Update="appsettings.Development.json" CopyToPublishDirectory="Never" />
+		<Content Update="spec.json" CopyToPublishDirectory="Never" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Csis.Admission.Application\Csis.Admission.Application.csproj" />
+		<ProjectReference Include="..\Csis.Admission.Persistence\Csis.Admission.Persistence.csproj" />
+		<ProjectReference Include="..\Csis.Admission.Services\Csis.Admission.Services.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Controllers\Iranian\" />
+	</ItemGroup>
+
+</Project>
