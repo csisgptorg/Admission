@@ -11,11 +11,11 @@
 | متریک | مقدار | درصد |
 |------|------|------|
 | **فایل‌های کل (Commands/Queries)** | 394 | 100% |
-| **فایل‌های مستندسازی شده** | 65 | 16.5% |
-| **فایل‌های باقیمانده** | 329 | 83.5% |
-| **Features با حداقل یک فایل مستند** | 18 از 72 | 25% |
-| **کلمات نوشته شده** | ~138,000 | - |
-| **نمودارهای Mermaid** | 9+ | - |
+| **فایل‌های مستندسازی شده** | 70 | 17.8% |
+| **فایل‌های باقیمانده** | 324 | 82.2% |
+| **Features با حداقل یک فایل مستند** | 20 از 72 | 27.8% |
+| **کلمات نوشته شده** | ~150,000 | - |
+| **نمودارهای Mermaid** | 10+ | - |
 
 ---
 
@@ -69,9 +69,9 @@
 
 ---
 
-### 3. Students/Iranian Feature (در حال پیشرفت)
+### 3. Students Feature (در حال پیشرفت)
 
-**وضعیت**: 🔄 در حال تکمیل - 14 فایل مستندسازی شده
+**وضعیت**: 🔄 در حال تکمیل - 18 فایل مستندسازی شده
 
 **Commands مستندسازی شده**:
 | فایل | وضعیت | کلمات | نکات کلیدی |
@@ -84,6 +84,8 @@
 | SyncStudentBirthCertCommand.md | ✅ | ~11,000 | همگام‌سازی با الگوی Two-Step |
 | UpdateDependentBirthCertCommand.md | ✅ | ~8,000 | بروزرسانی شناسنامه تحت تکفل |
 | SyncDependentBirthCertCommand.md | ✅ | ~4,800 | همگام‌سازی تحت تکفل |
+| UpdateStudentProfilePictureRequestCommand.md | ✅ | ~4,200 | درخواست تغییر تصویر + AI |
+| ManualStudentExtensionCaseCommand.md | ✅ | ~3,500 | تمدید دستی توسط کارمند |
 
 **Queries مستندسازی شده**:
 | فایل | وضعیت | کلمات | نکات کلیدی |
@@ -94,30 +96,51 @@
 | GetStudentSummaryCaseByCodmQuery.md | ✅ | ~8,200 | خلاصه پرونده (بهینه) |
 | GetStudentCaseByCodmQuery.md | ✅ | ~900 | اطلاعات پرونده |
 | GetStudentDependentsByStudentCodmQuery.md | ✅ | ~3,400 | لیست تحت تکفل با ترتیب منطقی |
+| GetStudentAddressByCodmQuery.md | ✅ | ~1,500 | آدرس دانشجو (Null Object) |
 
-**مجموع کلمات**: ~89,500
+**مجموع کلمات**: ~98,700
 
 **Commands باقیمانده (اولویت بالا)**:
-- [ ] UpdateStudentProfilePictureRequestCommand
-- [ ] ManualStudentExtensionCaseCommand
 - [ ] StudentNormalExtensionCaseCommand
 - [ ] SyncDependentBirthCertByIdCommand
+- [ ] UpdateStudentProfilePictureFromCivilRegistryRequestCommand
 
 **Queries باقیمانده (اولویت بالا)**:
-- [ ] GetStudentAddressByCodmQuery
 - [ ] GetStudentPhoneByCodmQuery
 - [ ] CalculateExtensionCaseTimeQuery
+- [ ] GetStudentSpouseByStudentCodmQuery
 
-**تخمین باقیمانده**: 30 فایل دیگر
+**تخمین باقیمانده**: 27 فایل دیگر
+
+---
+
+### 4. DependentCaseActive Feature (جدید)
+
+**وضعیت**: 🆕 شروع شده - 2 فایل مستندسازی شده
+
+**Commands مستندسازی شده**:
+| فایل | وضعیت | کلمات | نکات کلیدی |
+|------|-------|------|-----------|
+| UpdateDependentCaseActiveEmployeeCommand.md | ✅ | ~3,700 | فعال/غیرفعال‌سازی توسط کارمند |
+| AutomaticOpenDependentCaseCommand.md | ✅ | ~3,000 | فعال‌سازی خودکار بعد از طلاق |
+
+**مجموع کلمات**: ~6,700
+
+**Commands باقیمانده**:
 
 ---
 
 ## 🔄 Features در حال انجام
 
-### Students/Iranian Feature
-- **پیشرفت**: 14 از 44 فایل (31.8%)
-- **در حال کار**: مستندسازی Commands و Queries کلیدی
-- **بعدی**: اتمام Commands مهم، سپس NonIranian
+### Students Feature
+- **پیشرفت**: 18 از 44 فایل (40.9%)
+- **در حال کار**: نزدیک به نیمه راه!
+- **بعدی**: تکمیل Queries مهم
+
+### DependentCaseActive Feature
+- **پیشرفت**: 2 از 7 فایل (28.6%)
+- **در حال کار**: مدیریت وضعیت پرونده تحت تکفل
+- **بعدی**: سایر Commands مدیریت وضعیت
 
 ---
 
