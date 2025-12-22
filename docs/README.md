@@ -51,7 +51,24 @@
 │   ├── README.md                # مستندات جامع Use Case ها (تشریحی)
 │   └── DETAILED_USE_CASES.md   # مستندات تفصیلی تمام Use Case ها
 └── /files
-    └── ... (مستندات فایل به فایل - در حال تکمیل)
+    └── /Csis.Admission.Application/Features/
+        ├── /CaseFilings           # 13 فایل - Wizard کامل
+        ├── /Auth                  # 3 فایل
+        ├── /Students              # 5 فایل
+        ├── /BlockServices         # 2 فایل
+        ├── /StudentDependents     # 3 فایل
+        ├── /Marriages             # 2 فایل
+        ├── /Houses                # 1 فایل
+        ├── /Addresses             # 1 فایل
+        ├── /BankAccounts          # 1 فایل
+        ├── /Employments           # 1 فایل
+        ├── /StudentMobiles        # 1 فایل
+        ├── /CommissionInfos       # 1 فایل
+        ├── /Divorce               # 1 فایل
+        ├── /CaseBlock             # 2 فایل
+        └── /Researches            # 1 فایل
+├── COMPREHENSIVE_FEATURES_SUMMARY.md  # ⭐ خلاصه جامع 72 Feature (394 Command/Query)
+├── PROGRESS_TRACKING.md           # ردیابی پیشرفت
 ```
 
 ---
