@@ -11,11 +11,11 @@
 | متریک | مقدار | درصد |
 |------|------|------|
 | **فایل‌های کل (Commands/Queries)** | 394 | 100% |
-| **فایل‌های مستندسازی شده** | 61 | 15.5% |
-| **فایل‌های باقیمانده** | 333 | 84.5% |
+| **فایل‌های مستندسازی شده** | 65 | 16.5% |
+| **فایل‌های باقیمانده** | 329 | 83.5% |
 | **Features با حداقل یک فایل مستند** | 18 از 72 | 25% |
-| **کلمات نوشته شده** | ~125,000 | - |
-| **نمودارهای Mermaid** | 8+ | - |
+| **کلمات نوشته شده** | ~138,000 | - |
+| **نمودارهای Mermaid** | 9+ | - |
 
 ---
 
@@ -71,7 +71,7 @@
 
 ### 3. Students/Iranian Feature (در حال پیشرفت)
 
-**وضعیت**: 🔄 در حال تکمیل - 9 فایل مستندسازی شده
+**وضعیت**: 🔄 در حال تکمیل - 14 فایل مستندسازی شده
 
 **Commands مستندسازی شده**:
 | فایل | وضعیت | کلمات | نکات کلیدی |
@@ -82,6 +82,8 @@
 | UpdateStudentProfilePictureCommand.md | ✅ | ~8,000 | بروزرسانی تصویر (پس از AI) |
 | UpdateStudentProfilePictureFromCivilRegistryCommand.md | ✅ | ~8,500 | بروزرسانی تصویر از ثبت احوال |
 | SyncStudentBirthCertCommand.md | ✅ | ~11,000 | همگام‌سازی با الگوی Two-Step |
+| UpdateDependentBirthCertCommand.md | ✅ | ~8,000 | بروزرسانی شناسنامه تحت تکفل |
+| SyncDependentBirthCertCommand.md | ✅ | ~4,800 | همگام‌سازی تحت تکفل |
 
 **Queries مستندسازی شده**:
 | فایل | وضعیت | کلمات | نکات کلیدی |
@@ -90,30 +92,30 @@
 | StudentAdvancedSearchQuery.md | ✅ | ~6,200 | جستجوی پیشرفته |
 | GetStudentInfoByCodmQuery.md | ✅ | ~6,700 | دریافت اطلاعات کامل |
 | GetStudentSummaryCaseByCodmQuery.md | ✅ | ~8,200 | خلاصه پرونده (بهینه) |
+| GetStudentCaseByCodmQuery.md | ✅ | ~900 | اطلاعات پرونده |
+| GetStudentDependentsByStudentCodmQuery.md | ✅ | ~3,400 | لیست تحت تکفل با ترتیب منطقی |
 
-**مجموع کلمات**: ~72,600
+**مجموع کلمات**: ~89,500
 
 **Commands باقیمانده (اولویت بالا)**:
-- [ ] UpdateDependentBirthCertCommand
-- [ ] SyncDependentBirthCertCommand
 - [ ] UpdateStudentProfilePictureRequestCommand
 - [ ] ManualStudentExtensionCaseCommand
 - [ ] StudentNormalExtensionCaseCommand
+- [ ] SyncDependentBirthCertByIdCommand
 
 **Queries باقیمانده (اولویت بالا)**:
-- [ ] GetStudentCaseByCodmQuery
 - [ ] GetStudentAddressByCodmQuery
 - [ ] GetStudentPhoneByCodmQuery
-- [ ] GetStudentDependentByCodmQuery
+- [ ] CalculateExtensionCaseTimeQuery
 
-**تخمین باقیمانده**: 35 فایل دیگر
+**تخمین باقیمانده**: 30 فایل دیگر
 
 ---
 
 ## 🔄 Features در حال انجام
 
 ### Students/Iranian Feature
-- **پیشرفت**: 9 از 44 فایل (20.5%)
+- **پیشرفت**: 14 از 44 فایل (31.8%)
 - **در حال کار**: مستندسازی Commands و Queries کلیدی
 - **بعدی**: اتمام Commands مهم، سپس NonIranian
 
