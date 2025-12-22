@@ -10,12 +10,12 @@
 
 | متریک | مقدار | درصد |
 |------|------|------|
-| **فایل‌های کل** | ~1524 | 100% |
-| **فایل‌های مستندسازی شده** | 18 | 1.18% |
-| **فایل‌های باقیمانده** | ~1506 | 98.82% |
-| **Features تکمیل شده (Commands)** | 2 از 72 | 2.78% |
-| **کلمات نوشته شده** | ~90,000 | - |
-| **نمودارهای Mermaid** | 4 | - |
+| **فایل‌های کل (Commands/Queries)** | 394 | 100% |
+| **فایل‌های مستندسازی شده** | 61 | 15.5% |
+| **فایل‌های باقیمانده** | 333 | 84.5% |
+| **Features با حداقل یک فایل مستند** | 18 از 72 | 25% |
+| **کلمات نوشته شده** | ~125,000 | - |
+| **نمودارهای Mermaid** | 8+ | - |
 
 ---
 
@@ -69,9 +69,53 @@
 
 ---
 
+### 3. Students/Iranian Feature (در حال پیشرفت)
+
+**وضعیت**: 🔄 در حال تکمیل - 9 فایل مستندسازی شده
+
+**Commands مستندسازی شده**:
+| فایل | وضعیت | کلمات | نکات کلیدی |
+|------|-------|------|-----------|
+| UpdateStudentBirthCertCommand.md | ✅ | ~7,500 | بروزرسانی اطلاعات شناسنامه‌ای |
+| SyncStudentBirthCertByCodmCommand.md | ✅ | ~6,800 | همگام‌سازی با ثبت احوال |
+| StudentExtensionCaseCommand.md | ✅ | ~5,200 | تمدید پرونده دانشجو |
+| UpdateStudentProfilePictureCommand.md | ✅ | ~8,000 | بروزرسانی تصویر (پس از AI) |
+| UpdateStudentProfilePictureFromCivilRegistryCommand.md | ✅ | ~8,500 | بروزرسانی تصویر از ثبت احوال |
+| SyncStudentBirthCertCommand.md | ✅ | ~11,000 | همگام‌سازی با الگوی Two-Step |
+
+**Queries مستندسازی شده**:
+| فایل | وضعیت | کلمات | نکات کلیدی |
+|------|-------|------|-----------|
+| GetStudentByCodmQuery.md | ✅ | ~4,500 | دریافت entity دانشجو |
+| StudentAdvancedSearchQuery.md | ✅ | ~6,200 | جستجوی پیشرفته |
+| GetStudentInfoByCodmQuery.md | ✅ | ~6,700 | دریافت اطلاعات کامل |
+| GetStudentSummaryCaseByCodmQuery.md | ✅ | ~8,200 | خلاصه پرونده (بهینه) |
+
+**مجموع کلمات**: ~72,600
+
+**Commands باقیمانده (اولویت بالا)**:
+- [ ] UpdateDependentBirthCertCommand
+- [ ] SyncDependentBirthCertCommand
+- [ ] UpdateStudentProfilePictureRequestCommand
+- [ ] ManualStudentExtensionCaseCommand
+- [ ] StudentNormalExtensionCaseCommand
+
+**Queries باقیمانده (اولویت بالا)**:
+- [ ] GetStudentCaseByCodmQuery
+- [ ] GetStudentAddressByCodmQuery
+- [ ] GetStudentPhoneByCodmQuery
+- [ ] GetStudentDependentByCodmQuery
+
+**تخمین باقیمانده**: 35 فایل دیگر
+
+---
+
 ## 🔄 Features در حال انجام
 
-(هیچکدام - آماده برای شروع Students Feature)
+### Students/Iranian Feature
+- **پیشرفت**: 9 از 44 فایل (20.5%)
+- **در حال کار**: مستندسازی Commands و Queries کلیدی
+- **بعدی**: اتمام Commands مهم، سپس NonIranian
 
 ---
 
@@ -79,26 +123,13 @@
 
 ### اولویت بحرانی (Critical)
 
-#### 1. Students/Iranian Feature (~47 فایل)
-**اهمیت**: بحرانی - هسته اصلی سیستم
+#### 1. Students/NonIranian Feature (~10 فایل)
+**اهمیت**: بحرانی - دانشجویان خارجی
 
 **Commands کلیدی**:
-- [ ] CreateStudentCommand
-- [ ] UpdateStudentCommand
-- [ ] UpdateStudentBirthCertCommand
-- [ ] SyncWithCivilRegistrationCommand
-- [ ] UpdateStudentPictureCommand
-- [ ] RenewStudentCaseCommand
-- [ ] BlockStudentCommand
-- [ ] UnblockStudentCommand
-
-**Queries کلیدی**:
-- [ ] GetStudentByIdQuery
-- [ ] GetStudentByNationalCodeQuery
-- [ ] SearchStudentsQuery
-- [ ] GetStudentSummaryQuery
-
-**تخمین زمان**: 2-3 روز (فایل‌های بزرگ و پیچیده)
+- [ ] UpdateNonIranianStudentBirthCertCommand
+- [ ] SyncNonIranianStudentBirthCertByCodmCommand
+- [ ] CreateStudentDeathCommand
 
 ---
 
@@ -117,8 +148,6 @@
 **تخمین زمان**: نیم روز
 
 ---
-
-### اولویت بالا (High)
 
 #### 3. StudentDependents (~10 فایل)
 **Commands**:
