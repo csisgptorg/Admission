@@ -109,8 +109,7 @@ $(cat /tmp/batch.txt)
           gh issue create \
             --title "مستندسازی خودکار - Batch $(date +%Y%m%d-%H%M)" \
             --body "$ISSUE_BODY" \
-            --label "documentation,automation,copilot" \
-            --assignee "copilot"
+            --label "documentation,automation,copilot"
       
       - name: Report completion
         if: steps.progress.outputs.complete == 'true'
