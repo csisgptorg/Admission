@@ -1,0 +1,144 @@
+name: Auto Documentation
+
+on:
+  schedule:
+    # هر 15 دقیقه یکبار اجرا می‌شود
+    # با توجه به اینکه هر فایل ~2-3 دقیقه طول می‌کشد، در هر اجرا 5 فایل مستند می‌شود
+    - cron: '*/15 * * * *'
+  
+  workflow_dispatch:  # امکان اجرای دستی
+    inputs:
+      batch_size:
+        description: 'تعداد فایل‌های مستندسازی در هر اجرا'
+        required: false
+        default: '5'
+      
+jobs:
+  auto-document:
+    runs-on: ubuntu-latest
+    
+    # جلوگیری از اجرای همزمان چند workflow
+    concurrency:
+      group: auto-documentation
+      cancel-in-progress: false
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Setup Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+      
+      - name: Check current documentation progress
+        id: progress
+        run: |
+          # شمارش کل Commands و Queries
+          TOTAL=$(find csis.admission.backend-salehi/Csis.Admission.Application/Features -name "*Command.cs" -o -name "*Query.cs" 2>/dev/null | wc -l)
+          
+          # شمارش فایل‌های مستندسازی شده
+          DOCUMENTED=$(find docs/files/Csis.Admission.Application/Features -name "*.md" 2>/dev/null | wc -l)
+          
+          # محاسبه درصد پیشرفت
+          PERCENT=$((DOCUMENTED * 100 / TOTAL))
+          
+          echo "total=$TOTAL" >> $GITHUB_OUTPUT
+          echo "documented=$DOCUMENTED" >> $GITHUB_OUTPUT
+          echo "percent=$PERCENT" >> $GITHUB_OUTPUT
+          
+          # اگر به 100% رسیدیم، متوقف شود
+          if [ $PERCENT -ge 100 ]; then
+            echo "complete=true" >> $GITHUB_OUTPUT
+          else
+            echo "complete=false" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Find undocumented files
+        id: find_files
+        if: steps.progress.outputs.complete == 'false'
+        run: |
+          # پیدا کردن فایل‌های بدون مستند
+          comm -23 \
+            <(find csis.admission.backend-salehi/Csis.Admission.Application/Features -name "*Command.cs" -o -name "*Query.cs" | sed 's|csis.admission.backend-salehi/Csis.Admission.Application/Features/||' | sed 's/\.cs$//' | sort) \
+            <(find docs/files/Csis.Admission.Application/Features -name "*.md" 2>/dev/null | sed 's|docs/files/Csis.Admission.Application/Features/||' | sed 's/\.md$//' | sort) \
+            > /tmp/undocumented.txt
+          
+          # انتخاب 5 فایل اول (یا تعداد دلخواه از input)
+          BATCH_SIZE=${{ github.event.inputs.batch_size || '5' }}
+          head -n $BATCH_SIZE /tmp/undocumented.txt > /tmp/batch.txt
+          
+          # ذخیره تعداد فایل‌های باقیمانده
+          REMAINING=$(wc -l < /tmp/undocumented.txt)
+          echo "remaining=$REMAINING" >> $GITHUB_OUTPUT
+          
+          # نمایش فایل‌های انتخاب شده
+          echo "فایل‌های انتخاب شده برای مستندسازی:"
+          cat /tmp/batch.txt
+      
+      - name: Create documentation issue
+        if: steps.progress.outputs.complete == 'false' && steps.find_files.outputs.remaining > 0
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # ایجاد Issue برای درخواست مستندسازی
+          BATCH_SIZE=${{ github.event.inputs.batch_size || '5' }}
+          FILES=$(cat /tmp/batch.txt | tr '\n' ',' | sed 's/,$//')
+          
+          ISSUE_BODY="@copilot لطفاً فایل‌های زیر را مستند کن:
+
+\`\`\`
+$(cat /tmp/batch.txt)
+\`\`\`
+
+**پیشرفت فعلی:**
+- مستندسازی شده: ${{ steps.progress.outputs.documented }} از ${{ steps.progress.outputs.total }} (${{ steps.progress.outputs.percent }}%)
+- باقیمانده: ${{ steps.find_files.outputs.remaining }} فایل
+
+**راهنما:**
+لطفاً برای هر فایل یک مستند جامع با فرمت استاندارد (شامل نمودار Mermaid، Business Rules، و ...) ایجاد کن.
+
+---
+*این Issue به صورت خودکار توسط GitHub Actions ایجاد شده است (اجرا هر 15 دقیقه)*
+"
+          
+          # ایجاد Issue
+          gh issue create \
+            --title "مستندسازی خودکار - Batch $(date +%Y%m%d-%H%M)" \
+            --body "$ISSUE_BODY" \
+            --label "documentation,automation,copilot" \
+            --assignee "copilot"
+      
+      - name: Report completion
+        if: steps.progress.outputs.complete == 'true'
+        run: |
+          echo "✅ مستندسازی کامل شد!"
+          echo "📊 ${{ steps.progress.outputs.documented }} از ${{ steps.progress.outputs.total }} فایل مستند شدند"
+          
+          # ایجاد Issue برای اطلاع‌رسانی تکمیل
+          gh issue create \
+            --title "🎉 مستندسازی کامل شد!" \
+            --body "تمامی ${{ steps.progress.outputs.total }} فایل Command و Query با موفقیت مستندسازی شدند.
+            
+**آمار نهایی:**
+- فایل‌های مستندسازی شده: ${{ steps.progress.outputs.documented }}
+- پوشش: 100%
+
+Workflow خودکار متوقف شد." \
+            --label "documentation,completed"
+          
+          # غیرفعال کردن این workflow
+          gh workflow disable auto-documentation.yml || true
+      
+      - name: Summary
+        if: always()
+        run: |
+          echo "### 📊 خلاصه مستندسازی" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **کل فایل‌ها:** ${{ steps.progress.outputs.total }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **مستندسازی شده:** ${{ steps.progress.outputs.documented }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **درصد پیشرفت:** ${{ steps.progress.outputs.percent }}%" >> $GITHUB_STEP_SUMMARY
+          echo "- **باقیمانده:** ${{ steps.find_files.outputs.remaining }}" >> $GITHUB_STEP_SUMMARY
