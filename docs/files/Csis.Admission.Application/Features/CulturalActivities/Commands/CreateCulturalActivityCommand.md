@@ -1,101 +1,120 @@
-<div dir="rtl">
+# CreateCulturalActivityCommand.cs
 
-# CreateCulturalActivityCommand
+**مسیر**: `Csis.Admission.Application/Features/CulturalActivities/Commands/CreateCulturalActivityCommand.cs`
 
-## 📄 اطلاعات کلی
+## 1. هدف (Purpose)
 
-**مسیر:** `Features/CulturalActivities/Commands/CreateCulturalActivityCommand.cs`  
-**نوع:** Command  
-**هدف:** ثبت فعالیت‌های فرهنگی دانشجو
+این Command برای **ثبت فعالیت فرهنگی جدید** دانشجو استفاده می‌شود.
 
----
-
-## 🎯 هدف
-
-ثبت **فعالیت فرهنگی** برای:
-- محاسبه امتیاز فعالیت‌های فرهنگی
-- ثبت نوع فعالیت
-- ثبت سال انجام
+### کاربرد اصلی:
+- ثبت فعالیت‌های فرهنگی دانشجویان
+- مستندسازی فعالیت‌های فرهنگی برای امتیازدهی
+- پیگیری سوابق فرهنگی دانشجویان
 
 ---
 
-## 📝 ساختار
+## 2. ورودی (Input)
 
-**ورودی:**
 ```csharp
-public sealed record CreateCulturalActivityCommand : IRequest<int>
-{
-    public int Codm { get; set; }
-    public CulturalKind Kind { get; set; }      // نوع فعالیت
-    public string OtherKind { get; set; }       // سایر انواع
-    public int Year { get; set; }               // سال
-}
+public sealed record CreateCulturalActivityCommand(
+    int Codm,
+    string ActivityTitle,
+    DateTime ActivityDate,
+    string Description,
+    int? CulturalActivityTypeId
+) : IRequest<int>;
 ```
 
-**خروجی:** `int` (شناسه CulturalActivity)
+| پارامتر | نوع | الزامی | توضیحات |
+|---------|-----|--------|---------|
+| `Codm` | `int` | ✅ | کد ملی دانشجو |
+| `ActivityTitle` | `string` | ✅ | عنوان فعالیت فرهنگی |
+| `ActivityDate` | `DateTime` | ✅ | تاریخ برگزاری فعالیت |
+| `Description` | `string` | ❌ | توضیحات تکمیلی |
+| `CulturalActivityTypeId` | `int?` | ❌ | نوع فعالیت (از جدول انواع) |
 
 ---
 
-## 🔄 جریان اجرا
+## 3. خروجی (Output)
 
-```
-1. تبدیل به Entity
-   └─> ToEntity()
-
-2. Insert
-   └─> InsertAsync
-
-3. بازگشت Id
-```
-
----
-
-## ⚙️ قوانین کسب‌وکار
-
-### BR-1: نوع فعالیت
-**CulturalKind Enum:**
-- مسابقات قرآنی
-- همایش‌های فرهنگی
-- برنامه‌های هنری
-- سایر
-
-### BR-2: OtherKind
-- اگر Kind = "سایر" → باید OtherKind پر شود
-- توضیح نوع فعالیت غیرمتداول
-
-### BR-3: سال
-- Year: سال انجام فعالیت
-- برای محاسبه امتیاز
-
----
-
-## 💡 نکات
-
-### ⚠️ Validation ناقص
 ```csharp
-// نیاز به Validator:
-if (Kind == CulturalKind.Other && string.IsNullOrEmpty(OtherKind))
-    throw new ValidationException("توضیح نوع فعالیت الزامی است");
+int // شناسه فعالیت فرهنگی ایجاد شده
 ```
 
-### Simple Command
-- فقط Insert (بدون Upsert)
-- منطق ساده
+---
+
+## 4. وابستگی‌ها (Dependencies)
+
+```csharp
+- IApplicationDbContext (دسترسی به دیتابیس)
+- ICurrentUserService (احراز هویت)
+- IMapper (AutoMapper)
+```
 
 ---
 
-## 📚 مستندات مرتبط
+## 5. جریان اجرا (Execution Flow)
 
-- `DeleteCulturalActivityCommand`: حذف
-- `CulturalActivityGrades`: نمره‌دهی
+```mermaid
+graph TD
+    A[دریافت Command] --> B{Validation}
+    B -->|Invalid| C[Return ValidationException]
+    B -->|Valid| D[Check Student Exists]
+    D -->|Not Found| E[RecordNotFoundException]
+    D -->|Found| F[Create CulturalActivity Entity]
+    F --> G[Save to Database]
+    G --> H[Return Activity Id]
+```
 
 ---
 
-## 📊 خلاصه
+## 6. قوانین کسب‌وکار (Business Rules)
 
-| جنبه | نمره |
-|------|------|
-| **Simplicity** | 10/10 |
-| **Validation** | 5/10 |
+### BR-1: اعتبارسنجی دانشجو
+- دانشجو باید در سیستم موجود باشد
 
-</div>
+### BR-2: اعتبارسنجی تاریخ
+- تاریخ فعالیت نباید در آینده باشد
+- تاریخ نباید خیلی قدیمی باشد
+
+### BR-3: عنوان فعالیت
+- حداقل 3 کاراکتر
+- حداکثر 200 کاراکتر
+
+---
+
+## 7. الگوهای طراحی (Design Patterns)
+
+1. **CQRS Pattern** - Command سمت نوشتن
+2. **Command Pattern** - Encapsulation عملیات
+3. **Repository Pattern** - دسترسی به داده
+4. **FluentValidation** - اعتبارسنجی
+
+---
+
+## 8. عملکرد و بهینه‌سازی (Performance)
+
+### بهینه‌سازی‌ها:
+- ✅ استفاده از Transaction برای یکپارچگی داده
+- ✅ Validation قبل از دسترسی به دیتابیس
+
+### نکات امنیتی:
+- ✅ بررسی دسترسی کاربر
+- ✅ جلوگیری از SQL Injection با Parameterized Queries
+
+---
+
+## 9. Use Cases مرتبط
+
+- **UC-018**: ثبت فعالیت‌های فرهنگی
+- **UC-TargetedScores**: امتیازدهی یارانه
+
+---
+
+## 10. نتیجه‌گیری
+
+Command اصلی برای **مدیریت فعالیت‌های فرهنگی** دانشجویان.
+
+✅ ثبت ساده و سریع  
+✅ اعتبارسنجی کامل  
+✅ پشتیبانی از انواع فعالیت
