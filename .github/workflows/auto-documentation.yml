@@ -85,8 +85,6 @@ jobs:
           GH_TOKEN: ${{ secrets.MHOSEINN_PAT }}
         run: |
           # ایجاد Issue برای درخواست مستندسازی
-          BATCH_SIZE=${{ github.event.inputs.batch_size || '5' }}
-          FILES=$(cat /tmp/batch.txt | tr '\n' ',' | sed 's/,$//')
           
           # ساخت بدنه Issue
           echo "@copilot لطفاً فایل‌های زیر را مستند کن:" > /tmp/issue_body.txt
@@ -109,8 +107,7 @@ jobs:
           gh issue create \
             --title "مستندسازی خودکار - Batch $(date +%Y%m%d-%H%M)" \
             --body-file /tmp/issue_body.txt \
-            --label "documentation,automation,copilot" \
-            --assignee "copilot"
+            --label "documentation,automation,copilot"
       
       - name: Report completion
         if: steps.progress.outputs.complete == 'true'
