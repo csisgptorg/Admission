@@ -132,7 +132,7 @@ jobs:
             --label "documentation,completed"
           
           # غیرفعال کردن این workflow
-          gh workflow disable auto-documentation.yml || true
+          gh workflow disable "${{ github.workflow }}" || true
       
       - name: Summary
         if: always()
