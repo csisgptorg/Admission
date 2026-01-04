@@ -86,11 +86,6 @@ jobs:
         run: |
           # ایجاد Issue برای درخواست مستندسازی
           
-          # ایجاد labels مورد نیاز (در صورت عدم وجود)
-          gh label create "automation" --description "Automated tasks and workflows" --color "0E8A16" --force || true
-          gh label create "copilot" --description "Issues for GitHub Copilot" --color "8B44AC" --force || true
-          gh label create "completed" --description "Task completed" --color "0E8A16" --force || true
-          
           # ساخت بدنه Issue
           echo "@copilot لطفاً فایل‌های زیر را مستند کن:" > /tmp/issue_body.txt
           echo "" >> /tmp/issue_body.txt
@@ -108,11 +103,10 @@ jobs:
           echo "---" >> /tmp/issue_body.txt
           echo "*این Issue به صورت خودکار توسط GitHub Actions ایجاد شده است (اجرا هر 15 دقیقه)*" >> /tmp/issue_body.txt
           
-          # ایجاد Issue
+          # ایجاد Issue - بدون label برای جلوگیری از خطای permission
           gh issue create \
             --title "مستندسازی خودکار - Batch $(date +%Y%m%d-%H%M)" \
-            --body-file /tmp/issue_body.txt \
-            --label "documentation,automation,copilot"
+            --body-file /tmp/issue_body.txt
       
       - name: Report completion
         if: steps.progress.outputs.complete == 'true'
@@ -122,10 +116,7 @@ jobs:
           echo "✅ مستندسازی کامل شد!"
           echo "📊 ${{ steps.progress.outputs.documented }} از ${{ steps.progress.outputs.total }} فایل مستند شدند"
           
-          # ایجاد labels مورد نیاز (در صورت عدم وجود)
-          gh label create "completed" --description "Task completed" --color "0E8A16" --force || true
-          
-          # ایجاد Issue برای اطلاع‌رسانی تکمیل
+          # ایجاد Issue برای اطلاع‌رسانی تکمیل - بدون label برای جلوگیری از خطای permission
           echo "تمامی ${{ steps.progress.outputs.total }} فایل Command و Query با موفقیت مستندسازی شدند." > /tmp/completion_body.txt
           echo "" >> /tmp/completion_body.txt
           echo "**آمار نهایی:**" >> /tmp/completion_body.txt
@@ -136,8 +127,7 @@ jobs:
           
           gh issue create \
             --title "🎉 مستندسازی کامل شد!" \
-            --body-file /tmp/completion_body.txt \
-            --label "documentation,completed"
+            --body-file /tmp/completion_body.txt
           
           # غیرفعال کردن این workflow
           gh workflow disable "auto-documentation.yml" || true
