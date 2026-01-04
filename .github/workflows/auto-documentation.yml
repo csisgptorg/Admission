@@ -86,6 +86,11 @@ jobs:
         run: |
           # ایجاد Issue برای درخواست مستندسازی
           
+          # ایجاد labels مورد نیاز (در صورت عدم وجود)
+          gh label create "automation" --description "Automated tasks and workflows" --color "0E8A16" --force || true
+          gh label create "copilot" --description "Issues for GitHub Copilot" --color "8B44AC" --force || true
+          gh label create "completed" --description "Task completed" --color "0E8A16" --force || true
+          
           # ساخت بدنه Issue
           echo "@copilot لطفاً فایل‌های زیر را مستند کن:" > /tmp/issue_body.txt
           echo "" >> /tmp/issue_body.txt
@@ -116,6 +121,9 @@ jobs:
         run: |
           echo "✅ مستندسازی کامل شد!"
           echo "📊 ${{ steps.progress.outputs.documented }} از ${{ steps.progress.outputs.total }} فایل مستند شدند"
+          
+          # ایجاد labels مورد نیاز (در صورت عدم وجود)
+          gh label create "completed" --description "Task completed" --color "0E8A16" --force || true
           
           # ایجاد Issue برای اطلاع‌رسانی تکمیل
           echo "تمامی ${{ steps.progress.outputs.total }} فایل Command و Query با موفقیت مستندسازی شدند." > /tmp/completion_body.txt
