@@ -32,7 +32,7 @@ jobs:
       - name: Setup Git
         run: |
           git config --global user.name "MHoseinN"
-          git config --global user.email "MHoseinN@users.noreply.github.com"
+          git config --global user.email "188753223+MHoseinN@users.noreply.github.com"
       
       - name: Check current documentation progress
         id: progress
@@ -132,7 +132,7 @@ jobs:
             --label "documentation,completed"
           
           # غیرفعال کردن این workflow
-          gh workflow disable "${{ github.workflow }}" || true
+          gh workflow disable "auto-documentation.yml" || true
       
       - name: Summary
         if: always()
