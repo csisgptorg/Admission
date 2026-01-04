@@ -110,7 +110,8 @@ jobs:
           # ایجاد Issue - بدون label برای جلوگیری از خطای permission
           gh issue create \
             --title "مستندسازی خودکار - Batch $(date +%Y%m%d-%H%M)" \
-            --body-file /tmp/issue_body.txt
+            --body-file /tmp/issue_body.txt \
+            --assignee "@copilot"
       
       - name: Report completion
         if: steps.progress.outputs.complete == 'true'
@@ -131,7 +132,8 @@ jobs:
           
           gh issue create \
             --title "🎉 مستندسازی کامل شد!" \
-            --body-file /tmp/completion_body.txt
+            --body-file /tmp/completion_body.txt \
+            --assignee "@copilot"
           
           # غیرفعال کردن این workflow
           gh workflow disable "auto-documentation.yml" || true
