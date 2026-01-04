@@ -12,6 +12,10 @@ on:
         description: 'تعداد فایل‌های مستندسازی در هر اجرا'
         required: false
         default: '5'
+
+permissions:
+  contents: read
+  issues: write
       
 jobs:
   auto-document:
