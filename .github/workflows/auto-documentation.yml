@@ -27,12 +27,12 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.MHOSEINN_PAT }}
       
       - name: Setup Git
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "MHoseinN"
+          git config --global user.email "188753223+MHoseinN@users.noreply.github.com"
       
       - name: Check current documentation progress
         id: progress
@@ -82,56 +82,57 @@ jobs:
       - name: Create documentation issue
         if: steps.progress.outputs.complete == 'false' && steps.find_files.outputs.remaining > 0
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.MHOSEINN_PAT }}
         run: |
           # ایجاد Issue برای درخواست مستندسازی
-          BATCH_SIZE=${{ github.event.inputs.batch_size || '5' }}
-          FILES=$(cat /tmp/batch.txt | tr '\n' ',' | sed 's/,$//')
           
-          ISSUE_BODY="@copilot لطفاً فایل‌های زیر را مستند کن:
-
-\`\`\`
-$(cat /tmp/batch.txt)
-\`\`\`
-
-**پیشرفت فعلی:**
-- مستندسازی شده: ${{ steps.progress.outputs.documented }} از ${{ steps.progress.outputs.total }} (${{ steps.progress.outputs.percent }}%)
-- باقیمانده: ${{ steps.find_files.outputs.remaining }} فایل
-
-**راهنما:**
-لطفاً برای هر فایل یک مستند جامع با فرمت استاندارد (شامل نمودار Mermaid، Business Rules، و ...) ایجاد کن.
-
----
-*این Issue به صورت خودکار توسط GitHub Actions ایجاد شده است (اجرا هر 15 دقیقه)*
-"
+          # ساخت بدنه Issue
+          echo "@copilot لطفاً فایل‌های زیر را مستند کن:" > /tmp/issue_body.txt
+          echo "" >> /tmp/issue_body.txt
+          echo '```' >> /tmp/issue_body.txt
+          cat /tmp/batch.txt >> /tmp/issue_body.txt
+          echo '```' >> /tmp/issue_body.txt
+          echo "" >> /tmp/issue_body.txt
+          echo "**پیشرفت فعلی:**" >> /tmp/issue_body.txt
+          echo "- مستندسازی شده: ${{ steps.progress.outputs.documented }} از ${{ steps.progress.outputs.total }} (${{ steps.progress.outputs.percent }}%)" >> /tmp/issue_body.txt
+          echo "- باقیمانده: ${{ steps.find_files.outputs.remaining }} فایل" >> /tmp/issue_body.txt
+          echo "" >> /tmp/issue_body.txt
+          echo "**راهنما:**" >> /tmp/issue_body.txt
+          echo "لطفاً برای هر فایل یک مستند جامع با فرمت استاندارد (شامل نمودار Mermaid، Business Rules، و ...) ایجاد کن." >> /tmp/issue_body.txt
+          echo "" >> /tmp/issue_body.txt
+          echo "---" >> /tmp/issue_body.txt
+          echo "*این Issue به صورت خودکار توسط GitHub Actions ایجاد شده است (اجرا هر 15 دقیقه)*" >> /tmp/issue_body.txt
           
           # ایجاد Issue
           gh issue create \
             --title "مستندسازی خودکار - Batch $(date +%Y%m%d-%H%M)" \
-            --body "$ISSUE_BODY" \
-            --label "documentation,automation,copilot" \
-            --assignee "copilot"
+            --body-file /tmp/issue_body.txt \
+            --label "documentation,automation,copilot"
       
       - name: Report completion
         if: steps.progress.outputs.complete == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.MHOSEINN_PAT }}
         run: |
           echo "✅ مستندسازی کامل شد!"
           echo "📊 ${{ steps.progress.outputs.documented }} از ${{ steps.progress.outputs.total }} فایل مستند شدند"
           
           # ایجاد Issue برای اطلاع‌رسانی تکمیل
+          echo "تمامی ${{ steps.progress.outputs.total }} فایل Command و Query با موفقیت مستندسازی شدند." > /tmp/completion_body.txt
+          echo "" >> /tmp/completion_body.txt
+          echo "**آمار نهایی:**" >> /tmp/completion_body.txt
+          echo "- فایل‌های مستندسازی شده: ${{ steps.progress.outputs.documented }}" >> /tmp/completion_body.txt
+          echo "- پوشش: 100%" >> /tmp/completion_body.txt
+          echo "" >> /tmp/completion_body.txt
+          echo "Workflow خودکار متوقف شد." >> /tmp/completion_body.txt
+          
           gh issue create \
             --title "🎉 مستندسازی کامل شد!" \
-            --body "تمامی ${{ steps.progress.outputs.total }} فایل Command و Query با موفقیت مستندسازی شدند.
-            
-**آمار نهایی:**
-- فایل‌های مستندسازی شده: ${{ steps.progress.outputs.documented }}
-- پوشش: 100%
-
-Workflow خودکار متوقف شد." \
+            --body-file /tmp/completion_body.txt \
             --label "documentation,completed"
           
           # غیرفعال کردن این workflow
-          gh workflow disable auto-documentation.yml || true
+          gh workflow disable "auto-documentation.yml" || true
       
       - name: Summary
         if: always()
